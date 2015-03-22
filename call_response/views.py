@@ -22,7 +22,7 @@ class Greeting(View):
     def post(self, request):
         resp = twilio.twiml.Response()
         resp.say("Let's set up your voicemail.  Leave your greeting and press star when you are done.")
-        resp.record(method="GET",maxLength="20", finishOnKey="*", action="/greeting")
+        resp.record(method="GET",maxLength="20", finishOnKey="*", action="/calls/greeting")
         resp.say("Thanks")
         return HttpResponse(resp, content_type='application/xml')
 

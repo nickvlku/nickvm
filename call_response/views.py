@@ -38,7 +38,7 @@ class LeaveAMessage(View):
 
     @method_decorator(csrf_exempt)
     def dispatch(self, *args, **kwargs):
-        return super(Greeting, self).dispatch(*args, **kwargs)
+        return super(LeaveAMessage, self).dispatch(*args, **kwargs)
 
     def post(self, request):
         resp = twilio.twiml.Response()

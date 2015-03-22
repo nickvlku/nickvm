@@ -1,5 +1,5 @@
 from django.conf.urls import url, patterns
-from call_response.views import Greeting
+from call_response.views import Greeting, LeaveAMessage
 
 urlpatterns = patterns('',
     # Examples:
@@ -8,5 +8,6 @@ urlpatterns = patterns('',
 
     url(r'index/?$', 'call_response.views.index'),
     url(r'greeting/?$', Greeting.as_view()),
+    url(r'message/?$', LeaveAMessage.as_view()),
 
 )

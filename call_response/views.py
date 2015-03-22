@@ -1,4 +1,5 @@
 from django.http.response import HttpResponse
+from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import View
 
@@ -13,15 +14,19 @@ def index(request):
     return HttpResponse(resp, content_type='application/xml')
 
 class Greeting(View):
-    def get(self, request):
+
+    @method_decorator(csrf_exempt)
+    def dispatch(self, *args, **kwargs):
+        return super(Greeting, self).dispatch(*args, **kwargs)
+
+    def post(self, request):
         resp = twilio.twiml.Response()
         resp.say("Let's set up your voicemail.  Leave your greeting and press star when you are done.")
-        resp.record(method="GET",maxlength="20",finishonkey="*", action="/save")
+        resp.record(method="GET",maxlength="20",finishonkey="*", action="/greeting")
         resp.say("Thanks")
         return HttpResponse(resp, content_type='application/xml')
 
-    @csrf_exempt
-    def post(self, request):
+    def get(self, request):
         resp = twilio.twiml.Response()
         resp.say("Thank you!")
         return HttpResponse(resp, content_type='application/xml')

@@ -28,5 +28,7 @@ class Greeting(View):
 
     def get(self, request):
         resp = twilio.twiml.Response()
+        print request.GET
+        print request.POST
         resp.say("Thank you!")
         return HttpResponse(resp, content_type='application/xml')

@@ -12,7 +12,6 @@ def index(request):
 
     return HttpResponse(resp, content_type='application/xml')
 
-
 class Greeting(View):
     def get(self, request):
         resp = twilio.twiml.Response()
@@ -21,6 +20,7 @@ class Greeting(View):
         resp.say("Thanks")
         return HttpResponse(resp, content_type='application/xml')
 
+    @csrf_exempt
     def post(self, request):
         resp = twilio.twiml.Response()
         resp.say("Thank you!")

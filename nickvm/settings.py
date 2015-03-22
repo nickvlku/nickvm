@@ -53,7 +53,8 @@ INSTALLED_APPS = (
     'allauth.account',
     'django_extensions',
     'debug_toolbar',
-    'call_response'
+    'call_response',
+    'interface'
 )
 
 MIDDLEWARE_CLASSES = (

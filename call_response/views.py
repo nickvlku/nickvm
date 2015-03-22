@@ -32,3 +32,22 @@ class Greeting(View):
         print request.POST
         resp.say("Thank you!")
         return HttpResponse(resp, content_type='application/xml')
+
+
+class LeaveAMessage(View):
+
+    @method_decorator(csrf_exempt)
+    def dispatch(self, *args, **kwargs):
+        return super(Greeting, self).dispatch(*args, **kwargs)
+
+    def post(self, request):
+        resp = twilio.twiml.Response()
+        resp.play(url='http://api.twilio.com/2010-04-01/Accounts/AC1df99c5915638a2c18f2e0a700de59cb/Recordings/REfe2d45c5a8aa90ec23b6b5303c5dd85a')
+        resp.record(method="GET",maxLength="20", finishOnKey="*", action="/calls/message")
+        resp.say("Thanks")
+        return HttpResponse(resp, content_type='application/xml')
+
+    def get(self, request):
+        resp = twilio.twiml.Response()
+        resp.say("Message has been saved!")
+        return HttpResponse(resp, content_type='application/xml')

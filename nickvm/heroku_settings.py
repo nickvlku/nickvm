@@ -28,3 +28,4 @@ SWAMP_DRAGON_REDIS_PORT = redis_url.port
 DRAGON_URL = 'http://nickvm.herokuapp.com:9999'
 
 
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'

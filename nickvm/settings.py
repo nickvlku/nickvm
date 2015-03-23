@@ -53,6 +53,7 @@ INSTALLED_APPS = (
     'allauth.account',
     'django_extensions',
     'debug_toolbar',
+    'swampdragon',
     'call_response',
     'interface'
 )
@@ -110,6 +111,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 SITE_ID=1
 
@@ -118,6 +120,8 @@ EMAIL_BACKEND = 'django_mailgun.MailgunBackend'
 MAILGUN_ACCESS_KEY = 'key-7b3c1886c974cce722af7a515349aad7'
 MAILGUN_SERVER_NAME = 'configs.io'
 
+SWAMP_DRAGON_CONNECTION = ('swampdragon.connections.sockjs_connection.DjangoSubscriberConnection', '/data')
+DRAGON_URL = 'http://localhost:9999/'
 from .allauth_settings import *
 
 if os.environ.get('heroku') == 'True':

@@ -126,4 +126,4 @@ DRAGON_URL = 'http://localhost:9999/'
 from .allauth_settings import *
 
 if os.environ.get('heroku') == 'True':
-    import heroku_settings
+    from .heroku_settings import *

@@ -50,6 +50,7 @@ INSTALLED_APPS = (
     'audiofield',
     'bootstrap3',
     'allauth',
+    'jquery',
     'allauth.account',
     'django_extensions',
     'debug_toolbar',

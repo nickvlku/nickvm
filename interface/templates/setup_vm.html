@@ -2,19 +2,49 @@
 <!DOCTYPE html>
 <html>
 <head lang="en">
+    <script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
+    <script type="text/javascript" src="{% static 'jquery.cookie.js' %}"></script>
     <meta charset="UTF-8">
     <title></title>
 </head>
 <body>
 
-<h2 id="call_status">Test</h2>
+<h1>Greeting</h1>
+<h2>Current Greeting</h2>
+<div id="greeting_div">
+    {% if greeting %}
+     <audio controls>
+          <source src="{{greeting.audio_file_link}}" type="audio/ogg" id="greeting_file">
+     </audio>
+    {% else %}
+        No greeting yet!
+    {% endif %}
+</div>
+<h2 id="title">Set a greeting</h2>
+<div id="call_status">No Call Yet</div><br/>
 
-<!-- SwampDragon -->
-{% swampdragon_settings %}
-<script type="text/javascript" src="{% static 'swampdragon/js/dist/swampdragon.min.js' %}"></script>
+
+<form id="phone-form">
+    {% csrf_token %}
+    Phone number to call:
+        <select name="phone_number" id="phone_number">
+            {% for phone_number in phone_numbers %}
+            <option>{{phone_number}}</option>
+            {% endfor %}
+        </select>
+    <input type="submit">
+</form>
 
 <!-- Monitor -->
 <script type="text/javascript" src="{% static 'call_status.js' %}"></script>
+<script type="application/javascript">
 
+    $('#phone-form').on('submit', function(event){
+        event.preventDefault();
+        make_call($('#phone_number').val());
+    });
+
+
+</script>
 </body>
 </html>

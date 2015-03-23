@@ -25,3 +25,6 @@ SWAMP_DRAGON_REDIS_HOST = redis_url.hostname
 SWAMP_DRAGON_REDIS_DB = 0
 SWAMP_DRAGON_REDIS_PORT = redis_url.port
 
+DRAGON_URL = 'http://nickvm.herokuapp.com:9999'
+
+
